@@ -1,0 +1,8 @@
+openapi: 3.0.3
+info:
+  title: API Specifications
+  version: 1.0.0
+  description: |
+    office-manage
+
+    [officeManage/userManagementApi](http://localhost:8002?url=http://localhost:8001/officeManageApi/userManagementApi.yml)

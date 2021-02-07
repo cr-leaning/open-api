@@ -1,0 +1,16 @@
+openapi: 3.0.3
+info:
+  title: user-management APIs
+  version: 0.0.1
+servers:
+  - url: 'https://example.com/user-management'
+    description: dummy url
+tags:
+  - name: user master
+paths:
+  /v1/user-management/users:
+    get:
+      tags:
+        - user master
+      summary: 特定ユーザ情報の取得
+      description: パラメータで指定されたユーザ情報を返却する

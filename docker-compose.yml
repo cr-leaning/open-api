@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  http_server:
+    image: danjellz/http-server
+    volumes:
+      - .:/public
+    command: ["http-server", "--cors", "-c-1"]
+    ports:
+      - "8001:8080"
+
+  swagger_ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8002:8080"
+    environment:
+      - "API_URL=http://localhost:8001/index.yml"
+
+  swagger_editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "8003:8080"
+    environment:
+      - "API_URL=http://localhost:8001/index.yml"
