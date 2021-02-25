@@ -14,3 +14,72 @@ paths:
         - user master
       summary: 特定ユーザ情報の取得
       description: パラメータで指定されたユーザ情報を返却する
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/UserIdParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessOnlyResponse'
+
+
+
+components:
+  schemas:
+    UserId:
+      type: string
+      example: 'test-user'
+    Id:
+      type: integer
+      format: int64
+      example: 1
+    Timestamp:
+      type: string
+      format: date-time
+      example: '2021-02-20T08:12:10'
+    Status:
+      type: string
+      enum:
+        - SUCCESS
+        - WARNIG
+        - ERROR
+      example: SUCCESS
+    StatusReason:
+      type: string
+      example: 'success reason.'
+    SuccessResponse:
+      type: object
+      required:
+        - status
+        - statusReason
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        statusReason:
+          $ref: '#/components/schemas/StatusReason'
+
+  responses:
+    SuccessOnlyResponse:
+      description: successful response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SuccessResponse'
+
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description:
+        TBC
+      required: true
+      schema:
+        type: string
+      example: Bearer 550e8400-e29b-41d4-a716-446655440000
+
+    UserIdParam:
+      name: userId
+      in: query
+      description: ユーザID
+      schema:
+        type: string
+      example: "tst_user_id"
